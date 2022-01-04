@@ -4,6 +4,7 @@ import TopBox from './TopBox';
 import { inviteUser } from '../services/api'
 import Button from '@mui/material/Button';
 import { toast } from 'react-toastify';
+import {Wrapper} from './StyleComponents/Style'
 
 export default function InviteUser() {
 
@@ -24,7 +25,7 @@ export default function InviteUser() {
   }
 
   return (
-    <>
+    <Wrapper>
       <TopBox text='Invite User' />
       <TextField fullWidth
         onChange={(e) => setEmail(e.target.value)}
@@ -36,6 +37,6 @@ export default function InviteUser() {
         Invite
       </Button>
 
-    </>
+    </Wrapper>
   );
 }

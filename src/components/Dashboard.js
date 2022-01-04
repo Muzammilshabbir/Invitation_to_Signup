@@ -2,6 +2,7 @@ import TopBox from './TopBox'
 import { fetchUser } from '../services/api'
 import { useEffect, useState } from 'react'
 import {useSelector} from 'react-redux'
+import {Title,Wrapper} from "./StyleComponents/Style"
 
 export default function Dashboard() {
 
@@ -24,9 +25,9 @@ export default function Dashboard() {
         getUser()
     }
     return (
-        <div>
+        <Wrapper>
             <TopBox text='Dashboard' />
-            <h3>Welcome {user.user_role}</h3>
-        </div>
+            <Title>Welcome {user.user_role}</Title>
+        </Wrapper>
     )
 }
