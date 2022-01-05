@@ -16,6 +16,7 @@ import { logout } from '../services/api';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux';
+import {StyledLink} from '../components/StyleComponents/Style'
 
 const ResponsiveAppBar = (props) => {
 
@@ -132,7 +133,7 @@ const ResponsiveAppBar = (props) => {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
 
             {menus.map((menu) => (
-              <Link key={menu.title} to={menu.path} style={{ textDecoration: 'none' }}>
+              <StyledLink key={menu.title} to={menu.path} >
                 
                 <Button                 
                   onClick={handleCloseNavMenu}
@@ -140,7 +141,7 @@ const ResponsiveAppBar = (props) => {
                 >
                   {menu.title}
                 </Button>
-              </Link>
+              </StyledLink>
             ))}
           </Box>
           <Box sx={{ flexGrow: 0 }}>

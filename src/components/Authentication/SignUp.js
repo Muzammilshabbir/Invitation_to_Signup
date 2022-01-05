@@ -15,11 +15,16 @@ import LockOpenIcon from '@mui/icons-material/LockOpen';
 import { toast } from 'react-toastify';
 import { sendRequest } from '../../services/api';
 import { useNavigate,useParams  } from 'react-router-dom'
+import {useDispatch,useSelector} from 'react-redux'
+import {insertUserData} from '../../store/userSlice'
 
 export default function SignUp({ component: Component, ...restOfProps }) {
     const navigate = useNavigate();
     const params = useParams();
-    const token = localStorage.getItem('_token')
+    const dispatch = useDispatch();
+
+    // const token = localStorage.getItem('_token')
+    const token = useSelector(state => state.user.token)
 
     React.useEffect(() => {
         if (token) navigate('/dashboard', { replace: true })
@@ -54,7 +59,10 @@ export default function SignUp({ component: Component, ...restOfProps }) {
 
         try {
             const { data } = await sendRequest(`/register/${params.token}`, 'POST', inputs);
-            console.log(`data`, data)
+
+            dispatch(insertUserData(data))
+            localStorage.setItem('_user', JSON.stringify(data.user))
+
             localStorage.setItem('_token', data.token)
             localStorage.setItem('_verified', data.user.otp_verified)
             navigate("/dashboard");
